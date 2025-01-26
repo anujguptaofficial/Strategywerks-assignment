@@ -21,6 +21,7 @@ const ProductDetailsModal = ({ product, isOpen, onClose }) => {
         <p>{product.description}</p>
         <p><strong>{CONSTANTS.CATEGORY}</strong> {product.category}</p>
         <p><strong>{CONSTANTS.PRICE}</strong> ${product.price}</p>
+        <p>Rating: {product.rating.rate} ⭐</p>
       </div>
     </div>
   );

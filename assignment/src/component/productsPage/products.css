@@ -47,3 +47,15 @@
   margin: 10px;
   text-align: center;
 }
+
+products-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.products-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 10px;
+}
