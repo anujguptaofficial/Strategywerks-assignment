@@ -35,6 +35,7 @@ const Products = () => {
           setHasMore(false);
         } else {
           setProducts((prev) => [...prev, ...products]);
+          
         }
       } catch (err) {
         setError(err.message);
@@ -102,12 +103,12 @@ const Products = () => {
   return (
     <div>
       <header className="products-header">
-        <h1 className="products-title">Our Featured Products</h1>
+        <h1 className="products-title">{CONSTANTS.FEATURED_PRODUCTS}</h1>
       </header>
-      {/* <ProductFiltersSorting
+      <ProductFiltersSorting
       onFilterChange={handleFilterChange}
       onSortChange={handleSortChange}
-      /> */}
+      />
       {error && <p className="error">{error}</p>}
       <div className="product-container">
         {products.map((product, index) => (
@@ -128,24 +129,10 @@ const Products = () => {
             <p>
               {CONSTANTS.PRICE$} {product.price}
             </p>
-            <p>Rating: {product.rating.rate} ⭐</p>
+            <p>{CONSTANTS.RATING} {product.rating.rate} ⭐</p>
           </div>
         ))}
       </div>
-      {/* <div className="product-container">
-        {filteredProducts.length > 0 ? (
-          filteredProducts.map((product) => (
-            <div key={product.id} className="product-box">
-              <img src={product.image} alt={product.title} />
-              <h3>{product.title}</h3>
-              <p>{product.category}</p>
-              <p>${product.price.toFixed(2)}</p>
-              <p>Rating: {product.rating.rate} ⭐</p>
-            </div>
-          ))
-        ) : (
-          <p className="no-products">No products match the selected filters.</p>
-        )}</div> */}
       {isLoading && <div>{CONSTANTS.LOADING}</div>}
       {!hasMore && <h3 className="no-products">{CONSTANTS.NO_MORE_PRODUCTS}</h3>}
       <ProductDetailsModal

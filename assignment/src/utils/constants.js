@@ -5,7 +5,15 @@ export const CONSTANTS = {
     CATEGORY: "Category:",
     IMAGES: "Images",
     PRODUCTS_URL: (id) => `https://fakestoreapi.com/products/${id}`,
+    FEATURED_PRODUCTS: "Our Featured Products",
     NO_MORE_PRODUCTS: "No more products to load",
     LOADING: "Please wait...",
     PRICE$: "Price: $",
+    RATING: "Rating:",
+    PRICE_LOW_TO_HIGH: "Price: Low to High",
+    PRICE_HIGH_TO_LOW: "Price: High to Low",
+    RATING_HIGH_TO_LOW: "Rating: High to Low",
+    NONE: "None",
+    SORT_BY: "Sort By:",
+    MIN_RATING: "Minimum Rating:"
 }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { CONSTANTS } from "../../utils/constants";
 
 const ProductFiltersSorting = ({ onFilterChange, onSortChange }) => {
   const [categories, setCategories] = useState([]);
@@ -13,7 +14,7 @@ const ProductFiltersSorting = ({ onFilterChange, onSortChange }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("https://fakestoreapi.com/products");
+        const response = await fetch(CONSTANTS.PRODUCTS_URL("/"));
         const data = await response.json();
         const uniqueCategories = ["all", ...new Set(data.map((p) => p.category))];
         setCategories(uniqueCategories);
@@ -37,7 +38,7 @@ const ProductFiltersSorting = ({ onFilterChange, onSortChange }) => {
   return (
     <div className="filters">
       <div className="filter">
-        <label htmlFor="category">Category:</label>
+        <label htmlFor="category">{CONSTANTS.CATEGORY}</label>
         <select
           id="category"
           value={filters.category}
@@ -52,28 +53,8 @@ const ProductFiltersSorting = ({ onFilterChange, onSortChange }) => {
           ))}
         </select>
       </div>
-
       <div className="filter">
-        <label htmlFor="priceRange">Price Range:</label>
-        <input
-          type="range"
-          id="priceRange"
-          min="0"
-          max="1000"
-          step="10"
-          value={filters.priceRange[1]}
-          onChange={(e) =>
-            handleFilterChange({
-              ...filters,
-              priceRange: [0, Number(e.target.value)],
-            })
-          }
-        />
-        <span>${filters.priceRange[0]} - ${filters.priceRange[1]}</span>
-      </div>
-
-      <div className="filter">
-        <label htmlFor="minRating">Minimum Rating:</label>
+        <label htmlFor="minRating">{CONSTANTS.MIN_RATING}</label>
         <input
           type="number"
           id="minRating"
@@ -89,18 +70,17 @@ const ProductFiltersSorting = ({ onFilterChange, onSortChange }) => {
           }
         />
       </div>
-
       <div className="filter">
-        <label htmlFor="sort">Sort By:</label>
+        <label htmlFor="sort">{CONSTANTS.SORT_BY}</label>
         <select
           id="sort"
           value={sortOption}
           onChange={(e) => handleSortChange(e.target.value)}
         >
-          <option value="">None</option>
-          <option value="price-low-high">Price: Low to High</option>
-          <option value="price-high-low">Price: High to Low</option>
-          <option value="rating-high-low">Rating: High to Low</option>
+          <option value="">{CONSTANTS.NONE}</option>
+          <option value="price-low-high">{CONSTANTS.PRICE_LOW_TO_HIGH}</option>
+          <option value="price-high-low">{CONSTANTS.PRICE_HIGH_TO_LOW}</option>
+          <option value="rating-high-low">{CONSTANTS.RATING_HIGH_TO_LOW}</option>
         </select>
       </div>
     </div>
