@@ -35,7 +35,7 @@ const Products = () => {
           setHasMore(false);
         } else {
           setProducts((prev) => [...prev, ...products]);
-          
+
         }
       } catch (err) {
         setError(err.message);
@@ -101,14 +101,14 @@ const Products = () => {
   };
 
   return (
-    <div>
+    <>
       <header className="products-header">
         <h1 className="products-title">{CONSTANTS.FEATURED_PRODUCTS}</h1>
+        <ProductFiltersSorting
+          onFilterChange={handleFilterChange}
+          onSortChange={handleSortChange}
+        />
       </header>
-      <ProductFiltersSorting
-      onFilterChange={handleFilterChange}
-      onSortChange={handleSortChange}
-      />
       {error && <p className="error">{error}</p>}
       <div className="product-container">
         {products.map((product, index) => (
@@ -133,14 +133,14 @@ const Products = () => {
           </div>
         ))}
       </div>
-      {isLoading && <div>{CONSTANTS.LOADING}</div>}
+      {isLoading && <div>{CONSTANTS.PLEASE_WAIT}</div>}
       {!hasMore && <h3 className="no-products">{CONSTANTS.NO_MORE_PRODUCTS}</h3>}
       <ProductDetailsModal
         product={selectedProduct}
         isOpen={isModalOpen}
         onClose={closeModal}
       />
-    </div>
+    </>
   );
 };
 

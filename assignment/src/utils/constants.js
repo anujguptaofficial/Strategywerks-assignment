@@ -7,7 +7,7 @@ export const CONSTANTS = {
     PRODUCTS_URL: (id) => `https://fakestoreapi.com/products/${id}`,
     FEATURED_PRODUCTS: "Our Featured Products",
     NO_MORE_PRODUCTS: "No more products to load",
-    LOADING: "Please wait...",
+    PLEASE_WAIT: "Please wait...",
     PRICE$: "Price: $",
     RATING: "Rating:",
     PRICE_LOW_TO_HIGH: "Price: Low to High",
@@ -15,5 +15,8 @@ export const CONSTANTS = {
     RATING_HIGH_TO_LOW: "Rating: High to Low",
     NONE: "None",
     SORT_BY: "Sort By:",
-    MIN_RATING: "Minimum Rating:"
+    MIN_RATING: "Minimum Rating:",
+    SUCCEEDED: "succeeded",
+    LOADING: "loading",
+    FAILED: "failed",
 }

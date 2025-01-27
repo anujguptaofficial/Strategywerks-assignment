@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+
 import { CONSTANTS } from "../../utils/constants";
+import "./productFilters.css"
 
 const ProductFiltersSorting = ({ onFilterChange, onSortChange }) => {
   const [categories, setCategories] = useState([]);

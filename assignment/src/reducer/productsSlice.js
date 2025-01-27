@@ -1,16 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { CONSTANTS } from "../utils/constants";
 
-// Async thunk for fetching products by page
 export const fetchProductsByPage = createAsyncThunk(
   "products/fetchProductsByPage",
   async (page) => {
-    const response = await axios.get(`https://fakestoreapi.com/products?limit=10&page=${page}`);
-    return { products: response.data, totalPages: 10 }; // Assume 10 pages for this example
+    const response = await axios.get(CONSTANTS.PRODUCTS_URL(page));
+    return { products: response.data, totalPages: 10 };
   }
 );
 
-// Create a slice
 const productsSlice = createSlice({
   name: "products",
   initialState: {
@@ -19,23 +18,22 @@ const productsSlice = createSlice({
     error: null,
     totalPages: 1,
   },
-  reducers: {}, // No additional reducers in this example
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchProductsByPage.pending, (state) => {
-        state.status = "loading";
+        state.status = CONSTANTS.LOADING;
       })
       .addCase(fetchProductsByPage.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.status = CONSTANTS.SUCCEEDED;
         state.items = [...state.items, ...action.payload.products];
         state.totalPages = action.payload.totalPages;
       })
       .addCase(fetchProductsByPage.rejected, (state, action) => {
-        state.status = "failed";
+        state.status = CONSTANTS.FAILED;
         state.error = action.error.message;
       });
   },
 });
 
-// Export the reducer as the default export
 export default productsSlice.reducer;
